@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">SMA</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="ok">OK</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="alert_dialog">Alert</string>
+    <string name="back">Back</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="done">Done</string>
+</resources>

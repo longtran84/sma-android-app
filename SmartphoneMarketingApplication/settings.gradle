@@ -1,0 +1,1 @@
+include ':app', ':uiframework', ':favourite', ':materialviewpager', ':admobsdk', ':loginsignup', ':htmltextview'

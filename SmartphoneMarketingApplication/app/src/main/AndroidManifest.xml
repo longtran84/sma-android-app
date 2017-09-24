@@ -1,0 +1,65 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sma.mobile">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <application
+        android:name="com.sma.mobile.SMAApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.sma.mobile.startup.StartupActivity"
+            android:label="@string/app_name"
+            android:configChanges="orientation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.sma.mobile.launcher.SplashScreen"
+            android:clickable="true"
+            android:focusableInTouchMode="true"
+            android:label="@string/app_name"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:theme="@style/AppTheme.RestaurantManagementSolution.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.sma.mobile.MainActivity"
+            android:label="@string/app_name"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.RestaurantManagementSolution.NoActionBar" />
+
+        <activity
+            android:name="com.sma.mobile.loginsignup.LoginActivity"
+            android:label="@string/app_name"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.RestaurantManagementSolution.NoActionBar" />
+
+        <activity
+            android:name="com.sma.mobile.loginsignup.SignupActivity"
+            android:label="@string/app_name"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.RestaurantManagementSolution.NoActionBar" />
+
+        <activity
+            android:name="com.thefinestartist.finestwebview.FinestWebViewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="sensor"
+            android:theme="@style/FinestWebViewTheme.Light" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="29cbd600bb8183011201895a931db91e93f2d614" />
+
+    </application>
+
+</manifest>

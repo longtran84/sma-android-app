@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:fitsSystemWindows="true"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:background="#FFFFFF">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/splash_screen_news" />
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/logo_slogan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/imageView"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="26dp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+</LinearLayout>
