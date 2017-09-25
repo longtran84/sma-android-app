@@ -58,17 +58,17 @@ public class SplashScreen extends AbstractAppCompatActivity {
 //        setSupportActionBar(toolbar);
 //        this.getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         mSMAApplication = (SMAApplication) getApplication();
-        new CountDownTimer(5 * 1000, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-
-            }
-
-            @Override
-            public void onFinish() {
-                redirectSignUp(SplashScreen.this);
-            }
-        }.start();
+//        new CountDownTimer(5 * 1000, 1000) {
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//
+//            }
+//
+//            @Override
+//            public void onFinish() {
+//                redirectSignUp(SplashScreen.this);
+//            }
+//        }.start();
 
 //        SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
 //        String registrationToken = pref.getString(Config.REGISTRATION_TOKENS, null);
