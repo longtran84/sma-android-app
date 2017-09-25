@@ -58,6 +58,6 @@ public interface FintechvietService {
     Call<List<Favourite>> getListFavourite();
 
     @Headers("Content-Type: application/json")
-    @GET("/content/news/interest/{deviceToken}")
-    Call<ArticlesResponse> getArticlesResponse(@Path("deviceToken") String deviceToken, @Query("fromDate") String fromDate, @Query("toDate") String toDate);
+    @GET("/content/news_crawler/interest/{deviceToken}")
+    Call<ArticlesResponse> getArticlesResponse(@Path("deviceToken") String deviceToken, @Query("page") int page);
 }

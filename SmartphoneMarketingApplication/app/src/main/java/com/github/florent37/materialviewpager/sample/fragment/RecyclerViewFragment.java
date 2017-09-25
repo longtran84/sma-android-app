@@ -23,6 +23,7 @@ import com.sma.mobile.favourite.ConversationAdapter;
 import com.sma.mobile.favourite.News;
 import com.sma.mobile.favourite.NewsAdapter;
 import com.sma.mobile.favourite.RecyclerViewOnItemClickListener;
+import com.sma.mobile.utils.listener.OnRcvScrollListener;
 import com.thefinestartist.finestwebview.FinestWebView;
 
 import java.util.ArrayList;
@@ -40,6 +41,8 @@ public class RecyclerViewFragment extends Fragment {
 
     private static final boolean GRID_LAYOUT = false;
     private static final int ITEM_COUNT = 8;
+    private final int TOTAL_DOCUMENT_OF_PAGE = 30;
+    private int currentPage = 1;
 
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
@@ -59,7 +62,7 @@ public class RecyclerViewFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
         final List<ArticlesItem> items = new ArrayList<ArticlesItem>();
-        FintechvietSdk.getInstance().getArticlesResponse("token_android", "2017-09-22 00:00:00", "2017-09-22 12:00:00", new JCallback<ArticlesResponse>() {
+        FintechvietSdk.getInstance().getArticlesResponse("token_android", currentPage, new JCallback<ArticlesResponse>() {
             @Override
             public void onResponse(Call<ArticlesResponse> call, Response<ArticlesResponse> response) {
                 ArticlesResponse articlesResponse = response.body();
@@ -111,5 +114,34 @@ public class RecyclerViewFragment extends Fragment {
             }
         });
         mRecyclerView.setAdapter(newsAdapter);
+        mRecyclerView.addOnScrollListener(new OnRcvScrollListener() {
+            @Override
+            public void onLoadMore(int totalItemCount) {
+                super.onLoadMore(totalItemCount);
+                if ((currentPage * TOTAL_DOCUMENT_OF_PAGE) < 1000) {
+                    currentPage++;
+                    items.add(null);
+                    newsAdapter.notifyItemInserted(items.size() - 1);
+                    FintechvietSdk.getInstance().getArticlesResponse("token_android", currentPage, new JCallback<ArticlesResponse>() {
+                        @Override
+                        public void onResponse(Call<ArticlesResponse> call, Response<ArticlesResponse> response) {
+                            items.remove(null);
+                            newsAdapter.notifyDataSetChanged();
+                            ArticlesResponse articlesResponse = response.body();
+                            for (ArticlesItem articlesItem : articlesResponse.getArticles()) {
+                                items.add(articlesItem);
+                                newsAdapter.notifyDataSetChanged();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ArticlesResponse> call, Throwable t) {
+                            items.remove(null);
+                            newsAdapter.notifyDataSetChanged();
+                        }
+                    });
+                }
+            }
+        });
     }
 }
