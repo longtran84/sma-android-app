@@ -264,12 +264,11 @@ public class FintechvietSdk {
     /***
      *
      * @param deviceToken
-     * @param fromDate
-     * @param toDate
+     * @param page
      * @param jCallback
      */
-    public void getArticlesResponse(String deviceToken, String fromDate, String toDate, final JCallback jCallback) {
-        getFintechvietService().getArticlesResponse(deviceToken, fromDate, toDate).enqueue(new Callback<ArticlesResponse>() {
+    public void getArticlesResponse(String deviceToken, int page, final JCallback jCallback) {
+        getFintechvietService().getArticlesResponse(deviceToken, page).enqueue(new Callback<ArticlesResponse>() {
             @Override
             public void onResponse(Call<ArticlesResponse> call, Response<ArticlesResponse> response) {
                 jCallback.onResponse(call, response);

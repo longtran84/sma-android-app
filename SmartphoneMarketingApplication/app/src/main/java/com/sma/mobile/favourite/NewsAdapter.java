@@ -11,6 +11,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.fintechviet.android.sdk.model.ArticlesItem;
 import com.sma.mobile.R;
 import com.sma.mobile.utils.JDateFormat;
+import com.sma.mobile.utils.viewholder.ProgressViewHolder;
 
 import org.sufficientlysecure.htmltextview.HtmlResImageGetter;
 
@@ -35,7 +36,7 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
      */
     public NewsAdapter(Context context, List<ArticlesItem> itemList,
                        RecyclerViewOnItemClickListener
-                                       recyclerViewOnItemClickListener) {
+                               recyclerViewOnItemClickListener) {
         this.itemList = itemList;
         this.context = context;
         this.recyclerViewOnItemClickListener = recyclerViewOnItemClickListener;
@@ -53,9 +54,9 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             ConversationViewHolder viewHolder = new ConversationViewHolder(view, recyclerViewOnItemClickListener);
             return viewHolder;
         } else if (viewType == VIEW_TYPE_LOADING) {
-//            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_progress_bar, parent, false);
-//            ProgressViewHolder progressViewHolder = new ProgressViewHolder(view);
-            return null;
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_progress_bar, parent, false);
+            ProgressViewHolder progressViewHolder = new ProgressViewHolder(view);
+            return progressViewHolder;
         }
         return null;
     }
@@ -69,8 +70,7 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             if (null != articlesItem) {
                 conversationViewHolder.appCompatTextViewArticlePublishedAt.setText(JDateFormat.getCurrentTimeStamp(Long.parseLong(articlesItem.getCreatedDate())));
                 conversationViewHolder.appCompatTextViewTitle.setText(articlesItem.getTitle().trim());
-                conversationViewHolder.appCompatTextViewDescription.setHtml(articlesItem.getDescription().trim(),
-                        new HtmlResImageGetter(conversationViewHolder.appCompatTextViewDescription));
+                conversationViewHolder.appCompatTextViewDescription.setText(articlesItem.getDescription().trim());
                 conversationViewHolder.appCompatTextViewComment.setText(String.format("%d comments", new Random().nextInt(200)));
                 RequestOptions options = new RequestOptions();
                 options.centerCrop();
