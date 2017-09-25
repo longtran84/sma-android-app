@@ -78,4 +78,7 @@ dependencies {
     compile project(':admobsdk')
     compile project(':htmltextview')
     compile 'com.thefinestartist:finestwebview:1.2.7'
+    compile 'com.google.firebase:firebase-core:10.0.1'
+    compile 'com.google.firebase:firebase-messaging:10.0.1'
  }
+apply plugin: 'com.google.gms.google-services'

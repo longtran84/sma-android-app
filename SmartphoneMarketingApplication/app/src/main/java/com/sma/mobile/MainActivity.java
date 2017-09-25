@@ -1,12 +1,15 @@
 package com.sma.mobile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.fintechviet.android.sdk.FintechvietSdk;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.github.florent37.materialviewpager.sample.DrawerActivity;
@@ -15,6 +18,9 @@ import com.github.florent37.materialviewpager.sample.fragment.FavouriteRecyclerV
 import com.github.florent37.materialviewpager.sample.fragment.NotificationsFragment;
 import com.github.florent37.materialviewpager.sample.fragment.PointConverterRecyclerViewFragment;
 import com.github.florent37.materialviewpager.sample.fragment.RecyclerViewFragment;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.sma.mobile.notification.AdViewActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -125,5 +131,10 @@ public class MainActivity extends DrawerActivity {
                 }
             });
         }
+        subscribeToPushService();
+    }
+
+    private void subscribeToPushService() {
+        FirebaseMessaging.getInstance().subscribeToTopic("ads");
     }
 }
