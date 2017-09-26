@@ -48,8 +48,7 @@ public class MainActivity extends DrawerActivity {
             public Fragment getItem(int position) {
                 switch (position) {
                     case 0:
-                        //return FavouriteRecyclerViewFragment.newInstance();
-                        return RecyclerViewFragment.newInstance();
+                        return FavouriteRecyclerViewFragment.newInstance();
                     case 1:
                         return RecyclerViewFragment.newInstance();
                     case 2:
@@ -93,23 +92,23 @@ public class MainActivity extends DrawerActivity {
                     case 0:
                         return HeaderDesign.fromColorResAndUrl(
                             R.color.green,
-                            "http://image.24h.com.vn/upload/3-2017/images/2017-09-15/1505479409-dua-xe-1.jpg");
+                            "http://static.pulzo.com/images/20170320105148/gettyimages-84745752-1-914x607.jpg?itok=1490028239");
                     case 1:
                         return HeaderDesign.fromColorResAndUrl(
                             R.color.blue,
-                            "http://image.24h.com.vn/upload/3-2017/images/2017-09-17/1505618493-150561636772927-2.jpg");
+                            "https://media2.s-nbcnews.com/j/newscms/2017_08/1909516/170221-norway-cr-1134_01_d4adb537bd8e5608acf2f9ceb29956fb.nbcnews-fp-1240-520.jpg");
                     case 2:
                         return HeaderDesign.fromColorResAndUrl(
                             R.color.cyan,
-                            "http://image.24h.com.vn/upload/3-2017/images/2017-09-17/1505614554-150547213121184-_mg_7571.jpg");
+                            "https://img.huffingtonpost.com/asset/58cfea212c00002100fef4b2.jpeg?cache=ptypfgqoap&ops=1910_1000");
                     case 3:
                         return HeaderDesign.fromColorResAndUrl(
                             R.color.red,
-                            "http://image.24h.com.vn/upload/3-2017/images/2017-09-17/1505623344-15056126545505-mcmaster.jpg");
+                            "http://i.telegraph.co.uk/multimedia/archive/02688/SWEDEN-HAPPY_2688213k.jpg");
                     case 4:
                         return HeaderDesign.fromColorResAndUrl(
                                 R.color.red,
-                                "http://image.24h.com.vn/upload/3-2017/images/2017-09-17/1505623344-15056126545505-mcmaster.jpg");
+                                "http://static4.uk.businessinsider.com/image/56f0292591058428008b7c82-480/norway.jpg");
                 }
 
                 //execute others actions if needed (ex : modify your header logo)

@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
+import android.view.View;
+import android.widget.Button;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -13,12 +15,15 @@ import com.sma.mobile.MainActivity;
 import com.sma.mobile.R;
 import com.sma.mobile.SMAApplication;
 import com.sma.mobile.activities.AbstractAppCompatActivity;
+import com.sma.mobile.loginsignup.LoginActivity;
 import com.sma.mobile.loginsignup.SignupActivity;
 
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import retrofit2.Call;
@@ -38,9 +43,10 @@ public class SplashScreen extends AbstractAppCompatActivity {
     private int currentVersion = 0;
     private int responseVersion = 0;
     private SMAApplication mSMAApplication;
-//    @BindView(R.id.toolbar_container)
-//    Toolbar toolbar;
-
+    @BindView(R.id.button_sign_in)
+    Button buttonSignIn;
+    @BindView(R.id.button_sign_up)
+    Button buttonSignUp;
     @Override
     public int getFragmentContainerViewId() {
         return 0;
@@ -50,7 +56,19 @@ public class SplashScreen extends AbstractAppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-//        ButterKnife.bind(this);
+        ButterKnife.bind(this);
+        buttonSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectSignIn(SplashScreen.this);
+            }
+        });
+        buttonSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectSignUp(SplashScreen.this);
+            }
+        });
 //        toolbar.refreshDrawableState();
 //        toolbar.setTitle("");
 //        toolbar.setTitleTextColor(Color.BLACK);
@@ -109,6 +127,16 @@ public class SplashScreen extends AbstractAppCompatActivity {
     public void redirectSignUp(Activity activity) {
         Intent intent = new Intent();
         intent.setClassName(activity, SignupActivity.class.getName());
+        activity.startActivity(intent);
+        activity.finish();
+    }
+
+    /***
+     * @param activity
+     */
+    public void redirectSignIn(Activity activity) {
+        Intent intent = new Intent();
+        intent.setClassName(activity, LoginActivity.class.getName());
         activity.startActivity(intent);
         activity.finish();
     }

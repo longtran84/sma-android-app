@@ -3,6 +3,7 @@ package com.github.florent37.materialviewpager.sample.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -46,6 +47,10 @@ public class RecyclerViewFragment extends Fragment {
 
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
+
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
+
     private NewsAdapter newsAdapter;
 
     public static RecyclerViewFragment newInstance() {
@@ -141,6 +146,30 @@ public class RecyclerViewFragment extends Fragment {
                         }
                     });
                 }
+            }
+        });
+        swipeRefreshLayout.setRefreshing(false);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                FintechvietSdk.getInstance().getArticlesResponse("token_android", currentPage, new JCallback<ArticlesResponse>() {
+                    @Override
+                    public void onResponse(Call<ArticlesResponse> call, Response<ArticlesResponse> response) {
+                        items.clear();
+                        ArticlesResponse articlesResponse = response.body();
+                        for (ArticlesItem articlesItem : articlesResponse.getArticles()) {
+                            items.add(articlesItem);
+                            newsAdapter.notifyDataSetChanged();
+                        }
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+
+                    @Override
+                    public void onFailure(Call<ArticlesResponse> call, Throwable t) {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                });
             }
         });
     }

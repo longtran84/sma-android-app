@@ -19,7 +19,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_margin="0dp"
-        android:background="#55000000">
+        android:background="#23000000">
 
         <TextView
             android:id="@+id/textView"
@@ -56,14 +56,16 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/button_sign_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_weight="1"
-                android:background="@color/iron"
+                android:background="@drawable/layout_border_right"
                 android:text="Đăng Nhập" />
 
             <Button
+                android:id="@+id/button_sign_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
