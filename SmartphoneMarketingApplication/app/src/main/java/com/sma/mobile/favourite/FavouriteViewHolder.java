@@ -23,8 +23,8 @@ public class FavouriteViewHolder extends RecyclerView.ViewHolder implements View
     @BindView(R.id.image_view_favorite)
     public ImageView imageViewFavorite;
 
-    @BindView(R.id.text_view_favorite_subject)
-    public TextView appCompatTextViewSubject;
+    @BindView(R.id.text_view_description)
+    public TextView appCompatTextViewDescription;
 
     public FavouriteViewHolder(View itemView,
                                RecyclerViewOnItemClickListener recyclerViewOnItemClickListener) {

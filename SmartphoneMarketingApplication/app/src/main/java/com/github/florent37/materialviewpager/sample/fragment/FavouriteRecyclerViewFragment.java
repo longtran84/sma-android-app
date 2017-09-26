@@ -1,5 +1,6 @@
 package com.github.florent37.materialviewpager.sample.fragment;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,7 @@ import com.sma.mobile.favourite.ConversationAdapter;
 import com.sma.mobile.favourite.FavouriteAdapter;
 import com.sma.mobile.favourite.News;
 import com.sma.mobile.favourite.RecyclerViewOnItemClickListener;
+import com.sma.mobile.utils.firebasenotifications.Config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +36,7 @@ import retrofit2.Response;
  */
 public class FavouriteRecyclerViewFragment extends Fragment {
 
-    private static final boolean GRID_LAYOUT = false;
+    private static final boolean GRID_LAYOUT = true;
     private static final int ITEM_COUNT = 20;
 
     @BindView(R.id.recyclerView)
@@ -42,7 +44,7 @@ public class FavouriteRecyclerViewFragment extends Fragment {
 
     @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout swipeRefreshLayout;
-
+    private String registrationToken;
     private FavouriteAdapter favouriteAdapter;
 
     public static FavouriteRecyclerViewFragment newInstance() {
@@ -58,6 +60,9 @@ public class FavouriteRecyclerViewFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+        SharedPreferences pref = getContext().getSharedPreferences(Config.SHARED_PREF, 0);
+        registrationToken = pref.getString(Config.REGISTRATION_TOKENS, "ERROR");
+
         final List<Favourite> items = new ArrayList<Favourite>();
         if (GRID_LAYOUT) {
             recyclerViewFavourite.setLayoutManager(new GridLayoutManager(getActivity(), 2));
@@ -74,7 +79,7 @@ public class FavouriteRecyclerViewFragment extends Fragment {
             }
         });
         recyclerViewFavourite.setAdapter(favouriteAdapter);
-        FintechvietSdk.getInstance().getListFavourite("123123123213", new JCallback<List<Favourite>>() {
+        FintechvietSdk.getInstance().getListFavourite(registrationToken, new JCallback<List<Favourite>>() {
             @Override
             public void onResponse(Call<List<Favourite>> call, Response<List<Favourite>> response) {
                 List<Favourite> listFavourite = response.body();
@@ -94,7 +99,7 @@ public class FavouriteRecyclerViewFragment extends Fragment {
             @Override
             public void onRefresh() {
                 swipeRefreshLayout.setRefreshing(true);
-                FintechvietSdk.getInstance().getListFavourite("123123123213", new JCallback<List<Favourite>>() {
+                FintechvietSdk.getInstance().getListFavourite(registrationToken, new JCallback<List<Favourite>>() {
                     @Override
                     public void onResponse(Call<List<Favourite>> call, Response<List<Favourite>> response) {
                         items.clear();

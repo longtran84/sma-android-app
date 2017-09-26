@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.fintechviet.android.sdk.FintechvietSdk;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.sma.mobile.notification.AdViewActivity;
+import com.sma.mobile.startup.services.RegistrationIntentService;
 
 /**
  * Created by longtran on 14/01/2017.
@@ -31,6 +32,7 @@ public class StartupActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        startService(new Intent(StartupActivity.this, RegistrationIntentService.class));
         setContentView(new StartupView(this));
         if (getIntent().getExtras() != null) {
             for (String key : getIntent().getExtras().keySet()) {

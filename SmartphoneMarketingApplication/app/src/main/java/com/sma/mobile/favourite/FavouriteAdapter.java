@@ -67,7 +67,7 @@ public class FavouriteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     = (FavouriteViewHolder) holder;
             final Favourite favourite = itemList.get(position);
             if (null != favourite) {
-                favouriteViewHolder.appCompatTextViewSubject.setText(favourite.getTitle());
+                favouriteViewHolder.appCompatTextViewDescription.setText(favourite.getTitle());
                 RequestOptions options = new RequestOptions();
                 options.centerCrop();
                 if(!StringUtils.isBlank(favourite.getUrlToImage())){
