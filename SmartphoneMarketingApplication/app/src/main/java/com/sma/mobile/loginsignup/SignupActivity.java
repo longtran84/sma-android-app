@@ -1,40 +1,62 @@
 package com.sma.mobile.loginsignup;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fintechviet.android.sdk.FintechvietSdk;
+import com.fintechviet.android.sdk.listener.JCallback;
 import com.sma.mobile.R;
+import com.sma.mobile.activities.AbstractAppCompatActivity;
+import com.sma.mobile.home.HomeActivity;
+import com.sma.mobile.utils.firebasenotifications.Config;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Response;
 
-public class SignupActivity extends AppCompatActivity {
-    private static final String TAG = "SignupActivity";
+public class SignupActivity extends AbstractAppCompatActivity {
 
-    @BindView(R.id.input_name)
-    EditText _nameText;
-    @BindView(R.id.input_address)
-    EditText _addressText;
-    @BindView(R.id.input_email)
-    EditText _emailText;
-    @BindView(R.id.input_mobile)
-    EditText _mobileText;
-    @BindView(R.id.input_password)
-    EditText _passwordText;
-    @BindView(R.id.input_reEnterPassword)
-    EditText _reEnterPasswordText;
+    private static final String TAG = SignupActivity.class.getName();
+
+    @BindView(R.id.edit_text_email_id)
+    EditText editTextEmail;
+    @BindView(R.id.edit_text_date_of_birth_id)
+    Spinner spinnerDateOfBirth;
+    @BindView(R.id.edit_text_location_id)
+    Spinner spinnerLocation;
+    @BindView(R.id.radio_group_id)
+    RadioGroup radioGroup;
+    @BindView(R.id.edit_text_invite_code_id)
+    EditText editTextInviteCode;
     @BindView(R.id.btn_signup)
-    Button _signupButton;
+    Button buttonSignUp;
     @BindView(R.id.link_login)
-    TextView _loginLink;
+    TextView textViewLoginLink;
+    private String correspondingCode = "VN-HN";
+
+    @Override
+    public int getFragmentContainerViewId() {
+        return 0;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,65 +64,103 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
 
-        _signupButton.setOnClickListener(new View.OnClickListener() {
+        buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signup();
+                signUp();
             }
         });
 
-        _loginLink.setOnClickListener(new View.OnClickListener() {
+        textViewLoginLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Finish the registration screen and return to the Login activity
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
                 finish();
-//                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                //overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+            }
+        });
+        List<String> years = new ArrayList<String>();
+        int thisYear = Calendar.getInstance().get(Calendar.YEAR);
+        for (int i = 1900; i <= thisYear; i++) {
+            years.add(Integer.toString(i));
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, years);
+        spinnerDateOfBirth.setAdapter(adapter);
+        spinnerDateOfBirth.setSelection(2017 - 1900);
+
+        Resources r = getResources();
+        TypedArray citiesCodes = r.obtainTypedArray(R.array.vietnamese_cities_and_provinces_with_vietnamese_characters);
+        List<String> city = new ArrayList<String>();
+        List<String> code = new ArrayList<String>();
+        int cpt = citiesCodes.length();
+        String[] cityAndCode = r.getStringArray(R.array.vietnamese_cities_and_provinces_with_vietnamese_characters);
+        for (int i = 0; i < cpt; ++i) {
+            if (i % 2 == 0) {
+                code.add(cityAndCode[i]);
+            } else {
+                city.add(cityAndCode[i]);
+            }
+        }
+        citiesCodes.recycle();
+        final List<String> fCode = code;
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, city);
+        spinnerLocation.setAdapter(dataAdapter);
+        spinnerLocation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                int index = arg0.getSelectedItemPosition();
+                correspondingCode = fCode.get(index);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
             }
         });
     }
 
-    public void signup() {
+    public void signUp() {
+        showProcessing();
         Log.d(TAG, "Signup");
-
-        if (!validate()) {
-            onSignupFailed();
-            return;
+        String gender = "Male";
+        int checkedRadioButtonId = radioGroup.getCheckedRadioButtonId();
+        if (checkedRadioButtonId == R.id.radio_button_male_id) {
+            gender = "Male";
+        } else if (checkedRadioButtonId == R.id.radio_button_female) {
+            gender = "Female";
         }
 
-        _signupButton.setEnabled(false);
-
-        final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this,
-                R.style.AppTheme);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Creating Account...");
-        progressDialog.show();
-
-        String name = _nameText.getText().toString();
-        String address = _addressText.getText().toString();
-        String email = _emailText.getText().toString();
-        String mobile = _mobileText.getText().toString();
-        String password = _passwordText.getText().toString();
-        String reEnterPassword = _reEnterPasswordText.getText().toString();
-
-        // TODO: Implement your own signup logic here.
-
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onSignupSuccess or onSignupFailed
-                        // depending on success
-                        onSignupSuccess();
-                        // onSignupFailed();
-                        progressDialog.dismiss();
+        SharedPreferences pref = getSharedPreferences(Config.SHARED_PREF, 0);
+        String registrationToken = pref.getString(Config.REGISTRATION_TOKENS, "ERROR");
+        FintechvietSdk.getInstance().updateUserInfo(registrationToken, editTextEmail.getText().toString(),
+                gender, spinnerDateOfBirth.getSelectedItem().toString(), correspondingCode, editTextInviteCode.getText().toString(),
+                new JCallback() {
+                    @Override
+                    public void onResponse(Call call, Response response) {
+                        hideProcessing();
+                        if (response.code() == 200) {
+                            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            getMaterialDialogAlert(SignupActivity.this, "Thông báo", "Mã giới thiệu không hợp lệ.").show();
+                        }
                     }
-                }, 3000);
+
+                    @Override
+                    public void onFailure(Call call, Throwable t) {
+                        hideProcessing();
+                    }
+                });
     }
 
 
     public void onSignupSuccess() {
-        _signupButton.setEnabled(true);
+        buttonSignUp.setEnabled(true);
         setResult(RESULT_OK, null);
         finish();
     }
@@ -108,61 +168,12 @@ public class SignupActivity extends AppCompatActivity {
     public void onSignupFailed() {
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
 
-        _signupButton.setEnabled(true);
+        buttonSignUp.setEnabled(true);
     }
 
     public boolean validate() {
         boolean valid = true;
 
-        String name = _nameText.getText().toString();
-        String address = _addressText.getText().toString();
-        String email = _emailText.getText().toString();
-        String mobile = _mobileText.getText().toString();
-        String password = _passwordText.getText().toString();
-        String reEnterPassword = _reEnterPasswordText.getText().toString();
-
-        if (name.isEmpty() || name.length() < 3) {
-            _nameText.setError("at least 3 characters");
-            valid = false;
-        } else {
-            _nameText.setError(null);
-        }
-
-        if (address.isEmpty()) {
-            _addressText.setError("Enter Valid Address");
-            valid = false;
-        } else {
-            _addressText.setError(null);
-        }
-
-
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError("enter a valid email address");
-            valid = false;
-        } else {
-            _emailText.setError(null);
-        }
-
-        if (mobile.isEmpty() || mobile.length()!=10) {
-            _mobileText.setError("Enter Valid Mobile Number");
-            valid = false;
-        } else {
-            _mobileText.setError(null);
-        }
-
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            _passwordText.setError("between 4 and 10 alphanumeric characters");
-            valid = false;
-        } else {
-            _passwordText.setError(null);
-        }
-
-        if (reEnterPassword.isEmpty() || reEnterPassword.length() < 4 || reEnterPassword.length() > 10 || !(reEnterPassword.equals(password))) {
-            _reEnterPasswordText.setError("Password Do not match");
-            valid = false;
-        } else {
-            _reEnterPasswordText.setError(null);
-        }
 
         return valid;
     }

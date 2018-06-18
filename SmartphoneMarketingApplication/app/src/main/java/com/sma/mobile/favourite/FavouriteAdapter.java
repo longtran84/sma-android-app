@@ -2,9 +2,11 @@ package com.sma.mobile.favourite;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -35,7 +37,7 @@ public class FavouriteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
      */
     public FavouriteAdapter(Context context, List<Favourite> itemList,
                             RecyclerViewOnItemClickListener
-                                       recyclerViewOnItemClickListener) {
+                                    recyclerViewOnItemClickListener) {
         this.itemList = itemList;
         this.context = context;
         this.recyclerViewOnItemClickListener = recyclerViewOnItemClickListener;
@@ -68,14 +70,25 @@ public class FavouriteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             final Favourite favourite = itemList.get(position);
             if (null != favourite) {
                 favouriteViewHolder.appCompatTextViewDescription.setText(favourite.getTitle());
-                RequestOptions options = new RequestOptions();
-                options.centerCrop();
-                if(!StringUtils.isBlank(favourite.getUrlToImage())){
-                    Glide.with(context)
-                            .load(favourite.getUrlToImage())
-                            .apply(options)
-                            .into(favouriteViewHolder.imageViewFavorite);
-
+//                RequestOptions options = new RequestOptions();
+//                options.centerCrop();
+//                if (!StringUtils.isBlank(favourite.getUrlToImage())) {
+//                    Glide.with(context)
+//                            .load(favourite.getUrlToImage())
+//                            .apply(options)
+//                            .into(favouriteViewHolder.imageViewFavorite);
+//
+//                } else {
+//                    Glide.with(context)
+//                            .load("http://www.ract.com.au/SiteCollectionImages/NewsImage-CS.jpg")
+//                            .apply(options)
+//                            .into(favouriteViewHolder.imageViewFavorite);
+//
+//                }
+                if (favourite.isInterest()) {
+                    favouriteViewHolder.imageViewFavoriteChecked.setVisibility(View.VISIBLE);
+                } else {
+                    favouriteViewHolder.imageViewFavoriteChecked.setVisibility(View.INVISIBLE);
                 }
             }
         } else {

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/static_cg_image_5" />
+
+    <rubikstudio.library.LuckyWheelView
+        android:id="@+id/luckyWheel"
+        android:layout_width="256dp"
+        android:layout_height="256dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        app:lkwBackgroundColor="@android:color/transparent"
+        app:lkwCenterImage="@drawable/pointer01"
+        app:lkwCursor="@drawable/pointer09"
+        app:lkwTextColor="#263238" />
+
+    <Button
+        android:id="@+id/play"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/ad_play_button" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/icon_title_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/ranking_rise_item_bg_2" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_pet_coin" />
+
+            <TextView
+                android:id="@+id/icon_pet_coin_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/imageView4"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="50dp"
+                android:textColor="@color/blue"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:text="0 đ" />
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

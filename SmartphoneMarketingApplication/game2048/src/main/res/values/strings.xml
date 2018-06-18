@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="high_score">ĐIỂM CAO NHẤT</string>
+    <string name="score">ĐIỂM SỐ</string>
+    <string name="instructions">Vuốt để di chuyển. 2 + 2 = 4. Đạt được 2048.</string>
+    <string name="you_win">Bạn thắng!</string>
+    <string name="game_over">Bạn đã thua!</string>
+    <string name="go_on">Nhấn để tiếp tục</string>
+    <string name="for_now">Bây giờ…</string>
+    <string name="endless">Chế độ "Endless"</string>
+
+    <!-- Confirmation dialog-->
+    <string name="reset">Chơi lại</string>
+    <string name="continue_game">Hủy</string>
+    <string name="reset_dialog_title">Đặt lại trò chơi?</string>
+    <string name="reset_dialog_message">Bạn có chắc chắn muốn chơi lại trò chơi?</string>
+</resources>

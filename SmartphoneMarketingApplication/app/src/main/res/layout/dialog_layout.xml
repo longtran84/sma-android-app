@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black40">
+
+    <RelativeLayout
+        android:id="@+id/relative_layout_admob_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
+        <RelativeLayout
+            android:id="@+id/relative_layout_admob_viedeo_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@color/transparent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="256dp"
+                android:background="@color/transparent"
+                android:orientation="vertical">
+
+                <com.afollestad.easyvideoplayer.EasyVideoPlayer xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/video_view_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_white"
+                    app:evp_autoFullscreen="false"
+                    app:evp_autoPlay="false"
+                    app:evp_customLabelText="Hello!"
+                    app:evp_disableControls="true"
+                    app:evp_hideControlsOnPlay="true"
+                    app:evp_leftAction="restart"
+                    app:evp_pauseDrawable="@drawable/evp_action_pause"
+                    app:evp_playDrawable="@drawable/evp_action_play"
+                    app:evp_restartDrawable="@drawable/evp_action_restart"
+                    app:evp_retryText="@string/evp_retry"
+                    app:evp_rightAction="submit"
+                    app:evp_submitText="@string/app_name" />
+            </LinearLayout>
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/switch_compat_video_control_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/custom_drawable_switch"
+                android:gravity="center_horizontal|center_vertical"
+                android:thumb="@android:color/transparent"
+                android:track="@android:color/transparent"
+                android:visibility="visible" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relative_layout_admob_image_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@color/transparent">
+
+            <ImageView
+                android:id="@+id/image_view_admob_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/fintechviet_thumbnail" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_layout_advertising"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/relative_layout_admob_id"
+        android:background="@color/white">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/text_view_title_advertising"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="5dp"
+            android:layout_toStartOf="@+id/image_view_admob"
+            android:text="@string/app_name"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/image_view_close_id"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_above="@+id/linear_layout_advertising"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/close_circle_outline" />
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/spin_kit_dialog_id"
+        style="@style/SpinKitView.CubeGrid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:clickable="false"
+        app:SpinKit_Color="@color/colorPrimary" />
+
+</RelativeLayout>

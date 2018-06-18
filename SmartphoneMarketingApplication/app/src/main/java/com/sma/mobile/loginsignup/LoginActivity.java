@@ -2,19 +2,18 @@ package com.sma.mobile.loginsignup;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
-import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sma.mobile.MainActivity;
 import com.sma.mobile.R;
+import com.sma.mobile.home.HomeActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     public void redirectHome(Activity activity) {
         Intent intent = new Intent();
-        intent.setClassName(activity, MainActivity.class.getName());
+        intent.setClassName(activity, HomeActivity.class.getName());
         activity.startActivity(intent);
         activity.finish();
     }
@@ -116,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // Disable going back to the MainActivity
+        // Disable going back to the GamePipePanic
         moveTaskToBack(true);
     }
 

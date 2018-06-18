@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_cashout"
+        android:checked="false"
+        android:icon="@drawable/map_marker"
+        android:title="Địa điểm" />
+
+
+    <item
+        android:id="@+id/navigation_news_topic"
+        android:checked="true"
+        android:icon="@drawable/news_topic"
+        android:title="Tin chủ đề" />
+
+    <item
+        android:id="@+id/navigation_news_head_lines_fragment"
+        android:checked="false"
+        android:icon="@drawable/news_head_lines"
+        android:title="Tin tức" />
+
+    <item
+        android:id="@+id/navigation_message"
+        android:checked="false"
+        android:icon="@drawable/message_alert"
+        android:title="Tin nhắn" />
+
+    <!--    <item
+            android:id="@+id/navigation_game"
+            android:checked="false"
+            android:icon="@drawable/gamepad_variant"
+            android:title="Game" />-->
+
+    <item
+        android:id="@+id/navigation_setting"
+        android:checked="false"
+        android:icon="@drawable/account_card_details"
+        android:title="Cá nhân" />
+</menu>

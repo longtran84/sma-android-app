@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="blue">#282828</color>
+    <color name="colorAccent">#4d79c1</color>
+    <color name="colorPrimary">#4d79c1</color>
+    <color name="colorPrimaryDark">#4d79c1</color>
 
-    <color name="accent_color">@color/blue</color>
-    <color name="colorPrimary">@color/blue</color>
-    <color name="colorPrimaryDark">@color/blue</color>
+    <color name="accent_color">@color/white</color>
+
     <color name="statusBarColor">@color/blue</color>
     <color name="navigationBarColor">@android:color/black</color>
     <color name="drawerArrowColor">@android:color/white</color>
 
     <!-- BLACK ALPHA -->
+    <color name="black00">#05000000</color>
     <color name="black05">#0d000000</color>
     <color name="black10">#1a000000</color>
     <color name="black15">#26000000</color>
@@ -59,10 +61,43 @@
     <color name="color_black">#ff000000</color>
 
     <color name="strip_color">#dddddd</color>
-    <color name="colorAccent">#FF4081</color>
     <color name="iron">#827f93</color>
 
     <color name="blackPrimaryDark">#282828</color>
     <color name="blackPrimary">#2E2E2E</color>
     <color name="blackPrimaryLight">#8F8F8F</color>
+
+    <color name="colorBackground">#FF26292D</color>
+    <color name="colorSliderBackground">#FF181821</color>
+    <color name="colorTextColor">#FFFFFFFF</color>
+    <color name="colorSwitchColor">#4d79c0</color>
+
+
+
+
+
+    <color name="header_background">#4d79c0</color>
+
+    <color name="text_yelow">#4d79c0</color>
+    <color name="tutorial_mask_color">#b3000000</color>
+    <color name="voucher_point">#66d5d5d5</color>
+    <color name="voucher_point_selected">#4d79c0</color>
+
+    <color name="text_black">#414141</color>
+    <color name="text_brrown">#433204</color>
+    <color name="text_gray">#7a7a7a</color>
+    <color name="text_orange">#b94c00</color>
+    <color name="text_white_gray">#bdbdbd</color>
+    <color name="color_red">#FF0000</color>
+    <color name="setting_devider_bg">#eeeeee</color>
+
+    <color name="grey_300">#E0E0E0</color>
+    <color name="blue">#00A2EA</color>
+
+    <color name="gray">#D1D0CE</color>
+    <color name="black_effective">#2a2a2a</color>
+
+    <color name="color_hyperlink">#1c3e96</color>
+    <color name="common_blur_alpha_effect">#4d000000</color>
+
 </resources>

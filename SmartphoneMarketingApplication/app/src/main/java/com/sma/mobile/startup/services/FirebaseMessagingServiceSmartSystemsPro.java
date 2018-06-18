@@ -105,7 +105,7 @@ public class FirebaseMessagingServiceSmartSystemsPro extends FirebaseMessagingSe
 //            showNotificationMessage(getApplicationContext(), title, message, timestamp, resultIntent);
 ////            } else {
 ////                // app is in background, show the notification in notification tray
-////                Intent resultIntent = new Intent(getApplicationContext(), MainActivity.class);
+////                Intent resultIntent = new Intent(getApplicationContext(), GamePipepanic.class);
 ////                resultIntent.putExtra("message", message);
 ////                // check for image attachment
 ////                if (TextUtils.isEmpty(imageUrl)) {

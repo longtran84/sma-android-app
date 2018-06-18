@@ -27,6 +27,7 @@ public class RegistrationIntentService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         String token = FirebaseInstanceId.getInstance().getToken();
         // Saving reg id to shared preferences
+        //todo
         storeRegistrationTokenSharedPreferences(token);
         LogHelper.i(TAG, "FCM Registration Token: " + token);
     }

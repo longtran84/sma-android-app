@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:flipview="http://schemas.android.com/apk/res-auto"
+    xmlns:layout="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sliding_pane_layout_id"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent">
+
+    <RelativeLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent">
+
+        <se.emilsjolander.flipview.FlipView
+            android:id="@+id/flip_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent"
+            android:visibility="gone"
+            flipview:orientation="vertical">
+
+        </se.emilsjolander.flipview.FlipView>
+    </RelativeLayout>
+
+    <hollowsoft.slidingdrawer.SlidingDrawer
+        android:id="@+id/sliding_drawer_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="false"
+        layout:content="@+id/content"
+        layout:handle="@+id/linear_layout_handle_id"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/linear_layout_handle_id"
+            android:background="@color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent" />
+
+                <RadioGroup
+                    android:id="@+id/radio_group_sliding_drawer_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/radio_button_news_shortcut_id"
+                        android:layout_width="48dp"
+                        android:layout_height="45dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/custom_radio_button_news_shortcut"
+                        android:button="@null" />
+
+                    <RadioButton
+                        android:id="@+id/radio_button_social_noti_shortcut_id"
+                        android:layout_width="48dp"
+                        android:layout_height="45dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/custom_radio_button_social_noti_shortcut"
+                        android:button="@null" />
+
+                    <RadioButton
+                        android:id="@+id/radio_button_voucher_shortcut_id"
+                        android:layout_width="48dp"
+                        android:layout_height="45dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/custom_radio_button_voucher_shortcut"
+                        android:button="@null" />
+                </RadioGroup>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager_sliding_drawer_id"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+    </hollowsoft.slidingdrawer.SlidingDrawer>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="10dp"
+        android:src="@drawable/icon_back_home" />
+
+</RelativeLayout>

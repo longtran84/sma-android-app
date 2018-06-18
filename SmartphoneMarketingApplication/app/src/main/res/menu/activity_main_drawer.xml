@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/y1" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/a"
+            android:title="Register" />
+    </group>
+    <group android:id="@+id/y2" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/b"
+            android:title="Transfer" />
+    </group>
+    <group android:id="@+id/y3" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/c"
+            android:title="Cardless Withdrawal" />
+    </group>
+    <group android:id="@+id/y4" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_manage1"
+            android:icon="@drawable/d"
+            android:title="Online Purchase" />
+    </group>
+    <group android:id="@+id/y5" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_manage2"
+            android:icon="@drawable/e"
+            android:title="Bill Payment" />
+    </group>
+    <group android:id="@+id/y6" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_manage3"
+            android:icon="@drawable/f"
+            android:title="Open Account" />
+    </group>
+    <group android:id="@+id/y7" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_manage4"
+            android:icon="@drawable/g"
+            android:title="Find Network" />
+    </group>
+    <group android:id="@+id/y8" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/h"
+            android:title="Admin" />
+    </group>
+
+</menu>

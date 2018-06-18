@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- AppBarLayout is a wrapper for a Toolbar in order to apply scrolling effects. -->
+    <!-- Note that AppBarLayout expects to be the first child nested within a CoordinatorLayout -->
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+        <!-- Toolbar is the actual app bar with text and the action items -->
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ToolbarTheme"
+            app:layout_scrollFlags="scroll|enterAlways" />
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/appBar"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/item_padding">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/setting_my_account"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <TextView
+                    android:id="@+id/tv_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_size_normal" />
+            </LinearLayout>
+
+            <include layout="@layout/menu_group_divider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                android:orientation="horizontal"
+                android:padding="@dimen/item_padding">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/setting_province"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <TextView
+                    android:id="@+id/tv_spinner_province_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                    android:text="@string/setting_none_select"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_size_normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                android:orientation="horizontal"
+                android:padding="@dimen/item_padding">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/setting_sex"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioGroup
+                        android:id="@+id/rad_sex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rad_btn_male"
+                            android:layout_width="96dp"
+                            android:layout_height="32dp"
+                            android:background="@drawable/check_textview_bg_corners"
+                            android:button="@null"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="center"
+                            android:text="@string/setting_male"
+                            android:textColor="@color/radiobuttonstate" />
+
+                        <RadioButton
+                            android:id="@+id/rad_btn_female"
+                            android:layout_width="96dp"
+                            android:layout_height="32dp"
+                            android:layout_marginLeft="@dimen/component_margin"
+                            android:textColor="@color/radiobuttonstate"
+                            android:background="@drawable/check_textview_bg_corners"
+                            android:button="@null"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="center"
+                            android:text="@string/setting_female" />
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                android:orientation="horizontal"
+                android:padding="@dimen/item_padding">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/setting_birthday"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <TextView
+                    android:id="@+id/tv_spinner_birthday_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/setting_none_select"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_size_normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                android:orientation="horizontal"
+                android:padding="@dimen/item_padding"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/setting_stt"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioGroup
+                        android:id="@+id/rad_stt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rad_btn_single"
+                            android:layout_width="96dp"
+                            android:layout_height="32dp"
+                            android:background="@drawable/check_textview_bg_corners"
+                            android:button="@null"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="center"
+                            android:text="@string/setting_single"
+                            android:textColor="@color/text_black" />
+
+                        <RadioButton
+                            android:id="@+id/rad_btn_married"
+                            android:layout_width="96dp"
+                            android:layout_height="32dp"
+                            android:layout_marginLeft="@dimen/component_margin"
+                            android:background="@drawable/check_textview_bg_corners"
+                            android:button="@null"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="center"
+                            android:text="@string/setting_married"
+                            android:textColor="@color/text_black" />
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+
+            <include layout="@layout/menu_group_divider" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

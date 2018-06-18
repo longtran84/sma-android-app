@@ -3,21 +3,23 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SmartphoneMarketingApplication.iml" filepath="$PROJECT_DIR$/SmartphoneMarketingApplication.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SmartphoneMarketingApplication.iml" filepath="$PROJECT_DIR$/SmartphoneMarketingApplication.iml" />
-      <module fileurl="file://$PROJECT_DIR$/admobsdk/admobsdk.iml" filepath="$PROJECT_DIR$/admobsdk/admobsdk.iml" />
-      <module fileurl="file://$PROJECT_DIR$/admobsdk/admobsdk.iml" filepath="$PROJECT_DIR$/admobsdk/admobsdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/advsdk/advsdk.iml" filepath="$PROJECT_DIR$/advsdk/advsdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/androidspinkit/androidspinkit.iml" filepath="$PROJECT_DIR$/androidspinkit/androidspinkit.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/favourite/favourite.iml" filepath="$PROJECT_DIR$/favourite/favourite.iml" />
-      <module fileurl="file://$PROJECT_DIR$/favourite/favourite.iml" filepath="$PROJECT_DIR$/favourite/favourite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/candywheel/candywheel.iml" filepath="$PROJECT_DIR$/candywheel/candywheel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/diagonallayout/diagonallayout.iml" filepath="$PROJECT_DIR$/diagonallayout/diagonallayout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/easyvideoplayer/easyvideoplayer.iml" filepath="$PROJECT_DIR$/easyvideoplayer/easyvideoplayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/floatingwidget/floatingwidget.iml" filepath="$PROJECT_DIR$/floatingwidget/floatingwidget.iml" />
+      <module fileurl="file://$PROJECT_DIR$/game2048/game2048.iml" filepath="$PROJECT_DIR$/game2048/game2048.iml" />
+      <module fileurl="file://$PROJECT_DIR$/game_onesearch/game_onesearch.iml" filepath="$PROJECT_DIR$/game_onesearch/game_onesearch.iml" />
       <module fileurl="file://$PROJECT_DIR$/htmltextview/htmltextview.iml" filepath="$PROJECT_DIR$/htmltextview/htmltextview.iml" />
-      <module fileurl="file://$PROJECT_DIR$/htmltextview/htmltextview.iml" filepath="$PROJECT_DIR$/htmltextview/htmltextview.iml" />
-      <module fileurl="file://$PROJECT_DIR$/loginsignup/loginsignup.iml" filepath="$PROJECT_DIR$/loginsignup/loginsignup.iml" />
-      <module fileurl="file://$PROJECT_DIR$/loginsignup/loginsignup.iml" filepath="$PROJECT_DIR$/loginsignup/loginsignup.iml" />
-      <module fileurl="file://$PROJECT_DIR$/materialviewpager/materialviewpager.iml" filepath="$PROJECT_DIR$/materialviewpager/materialviewpager.iml" />
-      <module fileurl="file://$PROJECT_DIR$/materialviewpager/materialviewpager.iml" filepath="$PROJECT_DIR$/materialviewpager/materialviewpager.iml" />
-      <module fileurl="file://$PROJECT_DIR$/uiframework/uiframework.iml" filepath="$PROJECT_DIR$/uiframework/uiframework.iml" />
-      <module fileurl="file://$PROJECT_DIR$/uiframework/uiframework.iml" filepath="$PROJECT_DIR$/uiframework/uiframework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lucky_wheel/lucky_wheel.iml" filepath="$PROJECT_DIR$/lucky_wheel/lucky_wheel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/material-viewpagerindicator/material-viewpagerindicator.iml" filepath="$PROJECT_DIR$/material-viewpagerindicator/material-viewpagerindicator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/n-puzzle/n-puzzle.iml" filepath="$PROJECT_DIR$/n-puzzle/n-puzzle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pagerslidingtabstrip/pagerslidingtabstrip.iml" filepath="$PROJECT_DIR$/pagerslidingtabstrip/pagerslidingtabstrip.iml" />
+      <module fileurl="file://$PROJECT_DIR$/recyclerviewflexibledivider/recyclerviewflexibledivider.iml" filepath="$PROJECT_DIR$/recyclerviewflexibledivider/recyclerviewflexibledivider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smart_location_lib/smart_location_lib.iml" filepath="$PROJECT_DIR$/smart_location_lib/smart_location_lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stickyswitch/stickyswitch.iml" filepath="$PROJECT_DIR$/stickyswitch/stickyswitch.iml" />
     </modules>
   </component>
 </project>

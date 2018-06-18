@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    </head>
+    <body style="margin: 8px;">
+        <div id="yui3-css-stamp" style="position: absolute !important; visibility: hidden !important">
+        </div>
+        <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <title>
+            sma.vn
+        </title>
+        <!-- <![endif]-->
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <style>
+            .display-none {
+            display: none;
+        }
+        .text-toggle {
+            cursor: pointer;
+        }
+        .ui-loader {
+        	display: none !important;
+        }
+        p {
+		    display: block;
+		    -webkit-margin-before: 1em;
+		    -webkit-margin-after: 1em;
+		    -webkit-margin-start: 0px;
+		    -webkit-margin-end: 0px;
+		}
+        </style>
+        <div id="site">
+            <div class="clearfix" id="siteWrapper">
+                <main id="lastId" role="main" style="padding: 0 20px; text-align: justify;">
+                        <p>
+                            <strong>
+                                Lưu ý cho người dùng SMA
+                            </strong>
+                        </p>
+                        <p class="text-toggle" onClick="showHide(this)">
+                            <span class="icon">
+							&#9658;
+                            </span>
+                            Về việc trả thưởng cho người dùng nước ngoài.
+                        </p>
+                        <div style="display : none;" id="text-content">
+                            <p>
+                                Xin chào SMAers,
+                            </p>
+                            <p>
+                                Hiện nay các chương trình tương tác quảng cáo trên ứng dụng SMA chỉ áp dụng cho thị trường Việt Nam. Tuy nhiên, hệ thống SMA hiện nay ghi nhận rất nhiều người dùng có sử dụng IP nước ngoài để tham gia tương tác quảng cáo ở thị trường nước ngoài như Mỹ, Nhật, Hàn Quốc, Canada.. Theo điều khoản sử dụng của SMA, các chương trình này có thể coi là các chương trình không hợp lệ và SMA có toàn quyền điều chỉnh số dư điểm thưởng phát sinh từ các chương trình này hoặc từ chối cung cấp dịch vụ với người dùng.
+                            </p>
+                            <p>
+                                Tuy nhiên, để đảm bảo quyền lợi SMAers, chúng tôi sẽ tạm thời ghi nhận điểm thưởng phát sinh này và trao đổi với nhà quảng cáo nước ngoài để xác nhận tính hợp lệ của các chương trình này. Trong trường hợp được xác nhận hợp lệ, chúng tôi sẽ thực hiện việc ghi nhận điểm thưởng và thực hiện việc thanh toán theo đúng quy trình.
+                            </p>
+                            <p>
+                                Xin chân thành cảm ơn sự tin tưởng của các SMAers
+                            </p>
+                            <p>
+                                #SMA
+                            </p>
+                        </div>
+                </main>
+            </div>
+        </div>
+    </body>
+</html>
+<script type="text/javascript">
+	function showHide(el){
+		var icon = el.querySelector('span.icon');
+		var div = document.getElementById('text-content');
+		if (div.style.display !== 'none') {
+			icon.innerHTML = '&#9658;';
+			div.style.display = 'none';
+		}
+		else {
+			icon.innerHTML = '&#9660;';
+			div.style.display = 'block';
+		}
+	}
+</script>

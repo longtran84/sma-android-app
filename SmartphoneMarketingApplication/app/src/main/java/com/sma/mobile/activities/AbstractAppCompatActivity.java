@@ -4,10 +4,11 @@ import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -24,20 +26,24 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.floatingwidget.FloatingWidgetService;
 import com.sma.mobile.R;
 import com.sma.mobile.SMAApplication;
 import com.sma.mobile.launcher.SplashScreen;
+import com.sma.mobile.utils.firebasenotifications.Config;
 
-import io.realm.RealmResults;
+import me.yokeyword.fragmentation.SupportActivity;
 
 /**
  * Created by longtran on 14/01/2017.
  */
 
-public abstract class AbstractAppCompatActivity extends AppCompatActivity {
+public abstract class AbstractAppCompatActivity extends SupportActivity {
 
     public SMAApplication _SMAApplication;
     private boolean hideKeyboard = true;
+    private MaterialDialog.Builder materialDialogProgressBar;
+    private MaterialDialog materialDialog;
 //    private UnauthorizedBroadcastReceiver unauthorizedBroadcastReceiver;
 
 
@@ -82,18 +88,21 @@ public abstract class AbstractAppCompatActivity extends AppCompatActivity {
                 = (SMAApplication) getApplication();
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         hideSoftKeyboard();
+        materialDialogProgressBar = getMaterialDialogProgressBar();
         //sendBroadcastBadge();
 //        final IntentFilter filter = new IntentFilter();
 //        filter.addAction(RS3.action.UNAUTHORIZED_ACTION);
 //        unauthorizedBroadcastReceiver = new UnauthorizedBroadcastReceiver();
 //        registerReceiver(unauthorizedBroadcastReceiver, filter);
+        Intent discoveryIntent = new Intent(this, FloatingWidgetService.class);
+        stopService(discoveryIntent);
     }
 
     /***
      * @return
      */
-    public MaterialDialog getMaterialDialogProgressBar() {
-        MaterialDialog materialDialog = new MaterialDialog.Builder(this)
+    private MaterialDialog.Builder getMaterialDialogProgressBar() {
+        MaterialDialog.Builder materialDialog = new MaterialDialog.Builder(this)
                 //.title(R.string.progress_dialog)
                 //.content(R.string.please_wait)
                 .customView(R.layout.progress_indicator_layout, true)
@@ -103,9 +112,7 @@ public abstract class AbstractAppCompatActivity extends AppCompatActivity {
                 .backgroundColorRes(R.color.transparent)
                 .titleColorRes(R.color.transparent)
                 .contentColor(Color.TRANSPARENT)
-                .progressIndeterminateStyle(false)
-                .show();
-        materialDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                .progressIndeterminateStyle(false);
         return materialDialog;
     }
 
@@ -143,11 +150,51 @@ public abstract class AbstractAppCompatActivity extends AppCompatActivity {
                 .title(title)
                 .content(content)
                 .positiveText(R.string.ok)
-                .positiveColorRes(R.color.color_black)
+                .positiveColorRes(R.color.colorAccent)
                 .onAny(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         dialog.dismiss();
+                    }
+                })
+                .build();
+    }
+
+    /****
+     * @return
+     */
+    public MaterialDialog getMaterialDialogAlert(Activity activity, String title, int layoutRes) {
+        return new MaterialDialog.Builder(activity)
+                .title(title)
+                //.content(content)
+                .positiveText(R.string.ok)
+                .positiveColorRes(R.color.colorAccent)
+                .customView(layoutRes/*R.layout.activity_reward_info*/, false)
+                .onAny(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
+                    }
+                })
+                .build();
+    }
+
+    /****
+     * @return
+     */
+    public MaterialDialog getMaterialDialogAlertError(Activity activity) {
+        return new MaterialDialog.Builder(activity)
+                .title("Lỗi mạng")
+                .content("Vui lòng kiểm tra lại wifi hoặc 3G")
+                .contentColorRes(R.color.white)
+                .backgroundColorRes(R.color.colorAccent)
+                .positiveText(R.string.ok)
+                .positiveColorRes(R.color.white)
+                .onAny(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
+                        finish();
                     }
                 })
                 .build();
@@ -215,7 +262,7 @@ public abstract class AbstractAppCompatActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main_option, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -230,6 +277,15 @@ public abstract class AbstractAppCompatActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    /**
+     * @return
+     */
+    public String getDeviceSerialNumber() {
+        SharedPreferences pref = getSharedPreferences(Config.SHARED_PREF, 0);
+        String deviceSerialNumber = pref.getString(Config.DEVICE_SERIAL, "ERROR");
+        return deviceSerialNumber;
     }
 
     /**
@@ -251,6 +307,23 @@ public abstract class AbstractAppCompatActivity extends AppCompatActivity {
         inputMethodManager.showSoftInput(view, 0);
     }
 
+    public void showProcessing() {
+        if (null != materialDialogProgressBar) {
+            materialDialog = materialDialogProgressBar.build();
+            materialDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            materialDialog.dismiss();
+            materialDialog.show();
+        }
+    }
+
+    public void hideProcessing() {
+        if (null != materialDialogProgressBar && null != materialDialog && materialDialog.isShowing()) {
+            materialDialog.dismiss();
+            materialDialog = null;
+            materialDialogProgressBar = null;
+        }
+    }
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (isHideKeyboard()) {
@@ -270,19 +343,66 @@ public abstract class AbstractAppCompatActivity extends AppCompatActivity {
 
     @Override
     public void onStop() {
+        Log.d(AbstractAppCompatActivity.class.getName(), "onStop.................");
         //LRuntimeHack.get().clearGrowthLimit();
         super.onStop();
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent discoveryIntent = new Intent(AbstractAppCompatActivity.this, FloatingWidgetService.class);
+                stopService(discoveryIntent);
+            }
+        }, 2000);
     }
 
     @Override
     public void onDestroy() {
         //LRuntimeHack.get().clearGrowthLimit();
         //unregisterReceiver(unauthorizedBroadcastReceiver);
+        Log.d(AbstractAppCompatActivity.class.getName(), "onDestroy.................");
         super.onDestroy();
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent discoveryIntent = new Intent(AbstractAppCompatActivity.this, FloatingWidgetService.class);
+                stopService(discoveryIntent);
+            }
+        }, 2000);
     }
 
     @Override
     protected void onResume() {
+        Log.d(AbstractAppCompatActivity.class.getName(), "onResume.................");
         super.onResume();
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent discoveryIntent = new Intent(AbstractAppCompatActivity.this, FloatingWidgetService.class);
+                stopService(discoveryIntent);
+            }
+        }, 2000);
+    }
+
+    @Override
+    protected void onPause() {
+        Log.d(AbstractAppCompatActivity.class.getName(), "onPause.................");
+        super.onPause();
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent discoveryIntent = new Intent(AbstractAppCompatActivity.this, FloatingWidgetService.class);
+                stopService(discoveryIntent);
+            }
+        }, 2000);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

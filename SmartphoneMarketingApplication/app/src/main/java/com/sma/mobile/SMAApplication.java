@@ -4,10 +4,14 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 
+import com.evernote.android.job.JobManager;
+import com.sma.mobile.jobs.DemoJobCreator;
+
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
  * Application class for the contact explorer app.
@@ -35,6 +39,12 @@ public class SMAApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        Realm.init(getApplicationContext());
+        //JobManager.create(this).addJobCreator(new DemoJobCreator());
+//        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+//                .setDefaultFontPath("fonts/ProximaNova/ProximaNova-Reg.otf")
+//                .setFontAttrId(R.attr.fontPath)
+//                .build());
         // Initialize Realm. Should only be done once when the application starts.
         Realm.init(this);
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder()
@@ -46,8 +56,8 @@ public class SMAApplication extends MultiDexApplication {
         //Realm.deleteRealm(realmConfiguration);
         Realm.setDefaultConfiguration(realmConfiguration);
         // Show log json response
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+//        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+//        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
         // Auto refresh token
         //clientBuilder.authenticator(new TokenAuthenticator());

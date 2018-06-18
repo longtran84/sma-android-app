@@ -1,5 +1,7 @@
 package com.sma.mobile.utils.firebasenotifications;
 
+import android.os.Build;
+
 /**
  * Created by longtran on 19/01/2017.
  */
@@ -17,7 +19,8 @@ public class Config {
     public static final int NOTIFICATION_ID = 100;
     public static final int NOTIFICATION_ID_BIG_IMAGE = 101;
 
-    public static final String SHARED_PREF = "ssp_fire_base";
+    public static final String SHARED_PREF = "sma_application";
     public static final String REGISTRATION_TOKENS = "REGISTRATION_TOKENS";
+    public static final String DEVICE_SERIAL = "DEVICE_SERIAL";
     public static final String HEADER_TOKEN = "HEADER_TOKEN";
 }

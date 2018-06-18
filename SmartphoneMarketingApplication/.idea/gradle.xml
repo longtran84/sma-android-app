@@ -8,13 +8,23 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/admobsdk" />
+            <option value="$PROJECT_DIR$/advsdk" />
+            <option value="$PROJECT_DIR$/androidspinkit" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/favourite" />
+            <option value="$PROJECT_DIR$/candywheel" />
+            <option value="$PROJECT_DIR$/diagonallayout" />
+            <option value="$PROJECT_DIR$/easyvideoplayer" />
+            <option value="$PROJECT_DIR$/floatingwidget" />
+            <option value="$PROJECT_DIR$/game2048" />
+            <option value="$PROJECT_DIR$/game_onesearch" />
             <option value="$PROJECT_DIR$/htmltextview" />
-            <option value="$PROJECT_DIR$/loginsignup" />
-            <option value="$PROJECT_DIR$/materialviewpager" />
-            <option value="$PROJECT_DIR$/uiframework" />
+            <option value="$PROJECT_DIR$/lucky_wheel" />
+            <option value="$PROJECT_DIR$/material-viewpagerindicator" />
+            <option value="$PROJECT_DIR$/n-puzzle" />
+            <option value="$PROJECT_DIR$/pagerslidingtabstrip" />
+            <option value="$PROJECT_DIR$/recyclerviewflexibledivider" />
+            <option value="$PROJECT_DIR$/smart_location_lib" />
+            <option value="$PROJECT_DIR$/stickyswitch" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

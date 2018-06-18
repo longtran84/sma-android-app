@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe_refresh_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- AppBarLayout is a wrapper for a Toolbar in order to apply scrolling effects. -->
+    <!-- Note that AppBarLayout expects to be the first child nested within a CoordinatorLayout -->
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+        <!-- Toolbar is the actual app bar with text and the action items -->
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ToolbarTheme"
+            app:layout_scrollFlags="scroll|enterAlways" />
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative_layout_rewards_points_id"
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:layout_below="@+id/appBar">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager_rewards_points_id"
+            android:layout_width="match_parent"
+            android:layout_height="96dp"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_toLeftOf="@+id/app_compat_button_point_converter"
+            android:layout_toStartOf="@+id/app_compat_button_point_converter"
+            android:padding="5dp">
+
+            <com.itsronald.widget.ViewPagerIndicator
+                android:id="@+id/view_pager_indicator_rewards_points_id"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:gravity="center_vertical"
+                app:dotRadius="5dp" />
+
+        </android.support.v4.view.ViewPager>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/app_compat_button_point_converter"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/background_border_radius_discount_grey"
+            android:text="Đổi điểm"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/relative_layout_rewards_points_id"
+        android:scrollbars="vertical" />
+</RelativeLayout>

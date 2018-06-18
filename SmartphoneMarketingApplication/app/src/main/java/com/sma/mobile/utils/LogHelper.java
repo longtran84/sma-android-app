@@ -15,8 +15,10 @@
  */
 package com.sma.mobile.utils;
 
-import android.support.compat.BuildConfig;
 import android.util.Log;
+
+import com.sma.mobile.BuildConfig;
+
 /**
  * Created by longtran on 14/01/2017.
  */
